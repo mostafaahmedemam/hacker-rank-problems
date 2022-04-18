@@ -1,0 +1,27 @@
+void kaprekarNumbers(int p, int q) {
+    int sqr=0;
+    string sqrString="";
+    int r=0,l=0;
+    for(int i=p;i<=q;i++){
+        sqr=i*i;
+        sqrString=to_string(sqr);
+        //calculate split digit
+        if (sqrString.length()%2==0){
+            r=stoi(sqrString.substr(0,sqrString.length()/2));
+            l=stoi(sqrString.substr(sqrString.length()/2,sqrString.length()/2));
+            if(r+l==i)cout<<i<<endl;
+        }
+        else{
+            r=stoi(sqrString.substr(0,sqrString.length()/2));
+            l=stoi(sqrString.substr(sqrString.length()/2,(sqrString.length()/2)+1));
+            if(r+l==i){
+                cout<<i<<endl;
+            }
+            else{
+                r=stoi(sqrString.substr(0,(sqrString.length()/2)+1));
+                l=stoi(sqrString.substr((sqrString.length()/2),(sqrString.length()/2)));
+                if(r+l==i)cout<<i<<endl;
+            }
+        }
+    }
+}
