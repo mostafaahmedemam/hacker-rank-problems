@@ -11,3 +11,4 @@ int countingValleys(int steps, string path) {
     }
     return num_valleys;
 }
+ 
