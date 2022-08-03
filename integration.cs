@@ -21,16 +21,24 @@ namespace ConsoleApp1
             }
             return output;
         }
-        public static double Compute(Func<double, double> fx, double a, double b, int n)
+        public static double Compute(Func<double, double> fx, double a, double b)
         {
-            double h = (b - a) / n;
-
+            double h = 0.5;
+            double n = (b - a)/h ;
+            
             double sum = fx(a) + fx(b);
             double x = a;
             for (int j = 1; j < n; j++)
             {
                 x += h;
-                sum += (2 << (j % 2)) * fx(x);
+                if (j % 2 != 0)
+                {
+                    sum += 4 * fx(x);
+                }
+                else
+                {
+                    sum += 2 * fx(x);
+                }
             }
 
             return sum * h / 3;
@@ -42,7 +50,9 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             Solution solu = new Solution();
-            Console.WriteLine(Solution.Compute(x => 7 - (x * x * x), -1, 2, 6));
+            Console.WriteLine(Solution.Compute(x => Math.Exp(x)-Math.Exp(-x), -23, 25));
+
+            //Console.WriteLine(Solution.Compute(x => 7 - (x* x * x * x), -1, 2));
             //int[] nums = new int []{ 3, 2, 4 };
             //int[] output= solu.TwoSum(nums,6);
             //Console.WriteLine(output[0]+" -*---- "+output[1]);
